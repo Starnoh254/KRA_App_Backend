@@ -74,7 +74,7 @@ public class FileNillReturnsService {
             String taxPayerPIN = request.getTaxPayerPIN();
             String obligationCode = "1";
             String month = "12";
-            String year = Year.now().toString();
+            String year = "2000";
 
             body.put("TaxpayerPIN" , taxPayerPIN);
             body.put("ObligationCode" , obligationCode);
@@ -82,6 +82,8 @@ public class FileNillReturnsService {
             body.put("Year" , year);
 
             mainBody.put("TAXPAYERDETAILS" , body);
+
+            System.out.println("Request payload: " + mainBody);
 
             HttpEntity<Map<String, Map<String , Object>>> entity =
                     new HttpEntity<>(mainBody, headers);

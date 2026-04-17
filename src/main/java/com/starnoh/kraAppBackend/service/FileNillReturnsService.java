@@ -1,6 +1,8 @@
 package com.starnoh.kraAppBackend.service;
 
 import com.starnoh.kraAppBackend.dto.FileReturnsDto;
+import com.starnoh.kraAppBackend.dto.KraRequest;
+import com.starnoh.kraAppBackend.dto.TaxpayerDetails;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -74,19 +76,28 @@ public class FileNillReturnsService {
             String taxPayerPIN = request.getTaxPayerPIN();
             String obligationCode = "1";
             String month = "12";
-            String year = "2000";
+            String year = "2016";
 
-            body.put("TaxpayerPIN" , taxPayerPIN);
-            body.put("ObligationCode" , obligationCode);
-            body.put("Month" , month);
-            body.put("Year" , year);
+            TaxpayerDetails details = new TaxpayerDetails();
+            details.setTaxpayerPIN(taxPayerPIN);
+            details.setObligationCode(obligationCode);
+            details.setMonth(month);
+            details.setYear(year);
 
-            mainBody.put("TAXPAYERDETAILS" , body);
+            KraRequest requestBody = new KraRequest();
+            requestBody.setTaxpayerDetails(details);
 
-            System.out.println("Request payload: " + mainBody);
+//            body.put("TaxpayerPIN" , taxPayerPIN);
+//            body.put("ObligationCode" , obligationCode);
+//            body.put("Month" , month);
+//            body.put("Year" , year);
+//
+//            mainBody.put("TAXPAYERDETAILS" , body);
 
-            HttpEntity<Map<String, Map<String , Object>>> entity =
-                    new HttpEntity<>(mainBody, headers);
+            System.out.println("Request payload: " + requestBody);
+
+            HttpEntity<KraRequest> entity =
+                    new HttpEntity<>(requestBody, headers);
 
             ResponseEntity<String> response =
                     restTemplate.postForEntity(url, entity, String.class);
@@ -103,7 +114,7 @@ public class FileNillReturnsService {
         catch (Exception e) {
             System.out.println("An error occurred");
             e.printStackTrace();
-            return "Failed to initiate payment: " + e.getMessage();
+            return "Failed to initiate the file returns process : " + e.getMessage();
         }
 
     }

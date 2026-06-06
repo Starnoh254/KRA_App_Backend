@@ -14,4 +14,11 @@ public class KraRequest {
     public void setTaxpayerDetails(TaxpayerDetails taxpayerDetails) {
         this.taxpayerDetails = taxpayerDetails;
     }
+
+    @Override
+    public String toString() {
+        return "KraRequest{" +
+                "taxpayerDetails=" + taxpayerDetails +
+                '}';
+    }
 }

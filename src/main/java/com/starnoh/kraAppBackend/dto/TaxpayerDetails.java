@@ -1,10 +1,19 @@
 package com.starnoh.kraAppBackend.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class TaxpayerDetails {
 
+    @JsonProperty("TaxpayerPIN")
     private String TaxpayerPIN;
+
+    @JsonProperty("ObligationCode")
     private String ObligationCode;
+
+    @JsonProperty("Month")
     private String Month;
+
+    @JsonProperty("Year")
     private String Year;
 
     public String getTaxpayerPIN() {
@@ -37,5 +46,15 @@ public class TaxpayerDetails {
 
     public void setYear(String year) {
         Year = year;
+    }
+
+    @Override
+    public String toString() {
+        return "TaxpayerDetails{" +
+                "TaxpayerPIN='" + TaxpayerPIN + '\'' +
+                ", ObligationCode='" + ObligationCode + '\'' +
+                ", Month='" + Month + '\'' +
+                ", Year='" + Year + '\'' +
+                '}';
     }
 }

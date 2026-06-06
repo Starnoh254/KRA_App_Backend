@@ -76,7 +76,7 @@ public class FileNillReturnsService {
             String taxPayerPIN = request.getTaxPayerPIN();
             String obligationCode = "1";
             String month = "12";
-            String year = "2016";
+            String year = "2024";
 
             TaxpayerDetails details = new TaxpayerDetails();
             details.setTaxpayerPIN(taxPayerPIN);
@@ -94,7 +94,7 @@ public class FileNillReturnsService {
 //
 //            mainBody.put("TAXPAYERDETAILS" , body);
 
-            System.out.println("Request payload: " + requestBody);
+            System.out.println("Request payload: " + requestBody.toString());
 
             HttpEntity<KraRequest> entity =
                     new HttpEntity<>(requestBody, headers);
